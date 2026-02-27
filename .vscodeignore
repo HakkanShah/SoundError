@@ -1,0 +1,9 @@
+.github/**
+src/**
+test/**
+out/**
+node_modules/**
+*.log
+tsconfig.json
+vitest.config.ts
+.eslintrc.cjs

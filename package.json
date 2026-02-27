@@ -1,0 +1,125 @@
+{
+  "name": "sound-error",
+  "displayName": "Sound Error",
+  "description": "Configurable sound feedback engine for diagnostics and terminal failures in VS Code.",
+  "version": "0.1.0",
+  "publisher": "sound-error-dev",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://example.com/sound-error.git"
+  },
+  "engines": {
+    "vscode": "^1.95.0"
+  },
+  "categories": [
+    "Other",
+    "Debuggers"
+  ],
+  "keywords": [
+    "audio",
+    "diagnostics",
+    "terminal",
+    "meme",
+    "errors"
+  ],
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onStartupFinished",
+    "onCommand:soundError.testSound",
+    "onCommand:soundError.reloadSoundPack",
+    "onCommand:soundError.toggleMode"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "soundError.testSound",
+        "title": "Sound Error: Test Sound"
+      },
+      {
+        "command": "soundError.reloadSoundPack",
+        "title": "Sound Error: Reload Sound Pack"
+      },
+      {
+        "command": "soundError.toggleMode",
+        "title": "Sound Error: Toggle Mode"
+      }
+    ],
+    "configuration": {
+      "title": "Sound Error",
+      "properties": {
+        "soundError.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable or disable Sound Error."
+        },
+        "soundError.volume": {
+          "type": "number",
+          "default": 0.8,
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Playback volume from 0.0 to 1.0."
+        },
+        "soundError.cooldown": {
+          "type": "number",
+          "default": 3000,
+          "minimum": 0,
+          "description": "Global cooldown in milliseconds between sound events."
+        },
+        "soundError.enableWarnings": {
+          "type": "boolean",
+          "default": false,
+          "description": "Allow warning diagnostics to trigger warning sound events."
+        },
+        "soundError.customSoundPath": {
+          "type": "string",
+          "default": "",
+          "description": "Absolute path to a custom sound pack directory."
+        },
+        "soundError.mode": {
+          "type": "string",
+          "enum": [
+            "meme",
+            "chaos",
+            "silent-success",
+            "off"
+          ],
+          "default": "meme",
+          "description": "Extension mode controlling cooldown and filtering behavior."
+        },
+        "soundError.enableSuccessSound": {
+          "type": "boolean",
+          "default": true,
+          "description": "Play success sounds for successful terminal commands."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "node esbuild.mjs",
+    "watch": "node esbuild.mjs --watch",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint \"src/**/*.ts\" \"test/**/*.ts\"",
+    "compile:integration": "tsc -p test/integration/tsconfig.json",
+    "test:unit": "vitest run",
+    "test:integration": "npm run build && npm run compile:integration && node ./test/integration/runTest.cjs",
+    "test": "npm run test:unit && npm run test:integration",
+    "package": "npm run build && npm run test:unit && vsce package --no-dependencies"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^22.13.10",
+    "@types/vscode": "^1.95.0",
+    "@typescript-eslint/eslint-plugin": "^8.25.0",
+    "@typescript-eslint/parser": "^8.25.0",
+    "@vscode/test-electron": "^2.5.2",
+    "@vscode/vsce": "^3.2.2",
+    "esbuild": "^0.25.0",
+    "eslint": "^8.57.1",
+    "glob": "^10.4.5",
+    "mocha": "^11.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2",
+    "vitest": "^3.0.8"
+  }
+}
