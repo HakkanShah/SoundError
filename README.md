@@ -1,4 +1,4 @@
-# Sound Error  
+# Sound Error
 
 Sound Error is a VS Code extension that plays configurable sound effects for coding and terminal failures.
 
