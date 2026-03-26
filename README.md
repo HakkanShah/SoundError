@@ -2,7 +2,7 @@
 
 Sound Error is a VS Code extension that plays configurable sound effects for coding and terminal failures.
 
-## Features
+## Features 
 
 - Diagnostic monitoring for syntax/type/multi-error events.
 - Terminal monitoring for build, runtime, and test failures.
